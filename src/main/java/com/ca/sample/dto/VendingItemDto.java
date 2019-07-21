@@ -3,6 +3,7 @@ package com.ca.sample.dto;
 import com.ca.sample.domain.VendingType;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class VendingItemDto implements Serializable {
 
@@ -25,6 +26,24 @@ public class VendingItemDto implements Serializable {
 
     public void setType(VendingType type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final VendingItemDto that = (VendingItemDto) o;
+        return Objects.equals(id, that.id) &&
+                type == that.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, type);
     }
 
     @Override

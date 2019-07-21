@@ -1,6 +1,6 @@
 package com.ca.sample.controller;
 
-import com.ca.sample.dto.ResponseDto;
+import com.ca.sample.dto.ErrorMessageDto;
 import com.ca.sample.exception.IllegalVendingTypeException;
 import com.ca.sample.exception.VendingNotFoundException;
 import com.ca.sample.exception.VendingOutOfCapacityException;
@@ -30,22 +30,22 @@ public class ExceptionHandlerController {
     @ExceptionHandler({IllegalVendingTypeException.class, VendingOutOfCapacityException.class,
             HttpMessageConversionException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ResponseDto> handleVendingExceptions(final RuntimeException e) {
+    public ResponseEntity<ErrorMessageDto> handleVendingExceptions(final RuntimeException e) {
 
         logger.error("Vending exception: {}", e.getMessage());
 
-        final ResponseDto errorMessage = new ResponseDto(
+        final ErrorMessageDto errorMessage = new ErrorMessageDto(
                 messagesUtils.getMessage("vending.machine.violation"));
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({VendingNotFoundException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ResponseDto> handleVendingOutOfItemException(final VendingNotFoundException e) {
+    public ResponseEntity<ErrorMessageDto> handleVendingOutOfItemException(final VendingNotFoundException e) {
 
         logger.error("VendingNotFoundException: {}", e.getMessage());
 
-        final ResponseDto errorMessage = new ResponseDto(
+        final ErrorMessageDto errorMessage = new ErrorMessageDto(
                 messagesUtils.getMessage("vending.machine.item.not.found.violation"));
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }

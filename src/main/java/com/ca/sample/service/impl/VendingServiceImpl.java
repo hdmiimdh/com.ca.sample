@@ -70,4 +70,8 @@ public class VendingServiceImpl implements VendingService {
         vendingRepository.delete(vending.getId());
         return vendingToDtoConverter.convert(vending);
     }
+
+    void setCapacity(final Long capacity) {
+        this.capacity = capacity;
+    }
 }

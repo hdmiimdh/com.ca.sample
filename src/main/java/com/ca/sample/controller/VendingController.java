@@ -3,7 +3,6 @@ package com.ca.sample.controller;
 
 import com.ca.sample.configuration.swagger.SwaggerConstants;
 import com.ca.sample.dto.VendingItemDto;
-import com.ca.sample.exception.IllegalVendingTypeException;
 import com.ca.sample.service.VendingService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
